@@ -3,101 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ortaya Hizalanmış 3 Buton</title>
-    <!-- Bootstrap CSS dosyasını ekleyin -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Spacewizard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+
+        <style>
+            body {
+                opacity: 0;
+            }
+        </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <button class="btn btn-primary btn-block mb-2">Buton 1</button>
-        </div>
-        <div class="col-md-4">
-            <button class="btn btn-secondary btn-block mb-2">Buton 2</button>
-        </div>
-        <div class="col-md-4">
-            <button class="btn btn-success btn-block mb-2">Buton 3</button>
+<div id="navbar"></div>
+
+<div id="Page">
+    <div class="container full-height d-flex justify-content-center align-items-center mt-5 pt-4 mb-5 pb-5">
+        <div class="text-center">
+            <h1 class="display-1">Welcome</h1>
+            <p class="lead mt-5">We have had the opportunity to carry out various projects in this dynamic industry,
+                from experimental projects on topics that I am passionate about to work I do for clients. We enjoy
+                creative challenges and building strong relationships along the way.
+                Explore my work below and get in touch to learn more.</p>
         </div>
     </div>
-</div>
 
-<!-- Bootstrap JS ve Popper.js dosyalarını eklemeye gerek yok -->
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scroll Takip Eden Navbar</title>
-    <!-- Bootstrap CSS dosyasını ekleyin -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            padding-top: 56px; /* Navbar'ın üst kısmından dolayı sayfanın üst kısmında bir boşluk bırakır */
-        }
-        /* Scroll takip eden navbar stilini ayarla */
-        .fixed-top-scroll {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            transition: background-color 0.3s;
-            z-index: 1000;
-        }
-    </style>
-</head>
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top fixed-top-scroll">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Ana Sayfa <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Hakkımızda</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Hizmetler</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">İletişim</a>
-            </li>
-        </ul>
+    <div class="d-flex justify-content-center">
+        <img src="Images/dagnija-samsone-CvsDeBDCK1U-unsplash.jpg" alt="" style="width: 80%;">
     </div>
-</nav>
 
-<div class="container mt-4">
-    <!-- Sayfanın geri kalan içeriği burada -->
-    <h1>Scroll Takip Eden Navbar Örneği</h1>
-    <!-- ... -->
+    <div id="CR" class="text-center m-4 p-4">Developed by İlyas Korkmaz</div>
+
+    <div id="FPSShooterGame" class="d-flex justify-content-center">
+        <div class="flex-column text-center">
+            <h2 class="m-2 p-2">The last game development project I produced, (May not start)</h2>
+            <iframe src="Content/FPSShooterPromo_Beta1.2/index.html" width="1280" height="720" frameborder="0"></iframe>
+        </div>
+    </div>
+
 </div>
 
-<!-- Bootstrap JS ve Popper.js dosyalarını eklemeye gerek yok -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="navbar.js"></script>
 
 <script>
-    // Scroll olayını dinle ve navbar'ın arkaplan rengini değiştir
-    document.addEventListener('scroll', function () {
-        var navbar = document.querySelector('.fixed-top-scroll');
-        var scrollTop = window.scrollY;
+    choosePage("Home");
 
-        if (scrollTop > 0) {
-            navbar.style.backgroundColor = '#f8f9fa'; // Scroll yukarıdayken arkaplan rengi
-        } else {
-            navbar.style.backgroundColor = 'transparent'; // Scroll en üstteyken arkaplan rengi
-        }
+    window.addEventListener('load', function() {
+        fadeIn(document.body, 250); // 2 saniyede fade-in yapar
     });
+
+    function fadeIn(element, duration) {
+        var opacity = 0;
+        var interval = 16;  // Yaklaşık 60 fps
+        var increment = interval / duration;
+
+        function animate() {
+            opacity += increment;
+            if (opacity <= 1) {
+                element.style.opacity = opacity;
+                requestAnimationFrame(animate);
+            }
+        }
+        animate();
+    }
+
 </script>
 
 </body>
