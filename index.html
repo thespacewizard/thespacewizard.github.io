@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +10,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-        <style>
-            body {
-                opacity: 0;
-            }
-        </style>
+    <style>
+        body {
+            opacity: 0;
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 80%;
+            height: 0;
+            padding-bottom: 40%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+        }
+
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -37,20 +55,36 @@
         <img src="Images/dagnija-samsone-CvsDeBDCK1U-unsplash.jpg" alt="" style="width: 80%;">
     </div>
 
-    <div id="CR" class="text-center m-4 p-4">Developed by İlyas Korkmaz</div>
+    <div id="Game Project">
+        <h2 class="text-center m-2 p-2">The last game delevoped by me</h2>
+        <!-- <iframe src="https://play.unity.com/en/games/0cde301e-13a9-4b3d-b757-ed6df636f252/deadlines-fps-shooter-12" width="1280" height="720" frameborder="0"></iframe> -->
+        <div id="FPSShooterGame" class="d-flex justify-content-center">
+            <div class="iframe-container">
+                <iframe id="FPSGameProject"
+                    src="https://play.unity.com/api/v1/games/game/0cde301e-13a9-4b3d-b757-ed6df636f252/build/latest/frame?access_token=hhCj-G9K0M8hHYyMzxWhNHomkHUxkszYde7H0MH3b0s011f"
+                    allow="" allowfullscreen=""></iframe>
 
-    <div id="FPSShooterGame" class="d-flex justify-content-center">
-        <div class="flex-column text-center">
-            <h2 class="m-2 p-2">The last game development project I produced, (May not start)</h2>
-            <iframe src="Content/FPSShooterPromo_Beta1.2/index.html" width="1280" height="720" frameborder="0"></iframe>
+                <div id = "GameLoadingScreen" class="bg-secondary d-flex justify-content-center align-items-center" style="position :absolute; height: 100%; width: 100%; z-index: -1000;">
+                    <div class="alert" role="alert">
+                        <h3 class="mb-0 text-center">Loading...</h3>
+                    </div>
+                </div>
+
+            </div>
         </div>
+        <div id="FulscreenButton" class="d-flex justify-content-center">
+            <button id="fullscreenBtn" class="btn btn-secondary m-2">Fullscreen</button> <!-- Fullscreen button -->
+        </div>
+        <h6 class="text-center m-2 p-2"> Warning: In some browsers, the "CTRL-W" combination closes the page and unfortunately there is no way to disable it from there, you can crouch alternatively in the game by pressing the "C" key. </h6>
     </div>
 
+    <div id="CR" class="text-center m-4 p-4">Developed by İlyas Korkmaz</div>
 </div>
 
 <script src="navbar.js"></script>
 
 <script>
+    
     choosePage("Home");
 
     window.addEventListener('load', function() {
@@ -71,6 +105,31 @@
         }
         animate();
     }
+
+    document.getElementById('fullscreenBtn').addEventListener('click', function() {
+        const iframe = document.getElementById('FPSGameProject');
+        if (iframe.requestFullscreen) {
+            iframe.requestFullscreen();
+        } else if (iframe.mozRequestFullScreen) { // Firefox
+            iframe.mozRequestFullScreen();
+        } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+            iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) { // IE/Edge
+            iframe.msRequestFullscreen();
+        }
+    });
+
+    var iframe = document.getElementById('FPSGameProject');
+    var loadScreen = document.getElementById('GameLoadingScreen');
+
+    iframe.onload = function () {
+        setTimeout(function () {
+            loadScreen.remove();
+        }, 15000);
+    }
+    iframe.onerror = function() {
+        loadScreen.innerText = 'İçerik yüklenirken bir hata oluştu.';
+    };
 
 </script>
 
