@@ -12,28 +12,65 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="Styles/modal_box.css">
 
     <style>
+        @keyframes MoveBackgroundToEnd {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 625px 310px;
+            }
+            100%{
+                background-position: 1250px 0;
+            }
+        }
+
         body {
             opacity: 0;
         }
-
+    
         .iframe-container {
             position: relative;
+            /* display: flex; */
             width: 80%;
-            height: 0;
-            padding-bottom: 40%; /* 16:9 Aspect Ratio */
+            /* height: 40%; */
+            aspect-ratio: 16 / 8;
+            /* padding-bottom: 40%; */
             overflow: hidden;
         }
-
+    
         .iframe-container iframe {
-            position: absolute;
+            /* position: absolute; */
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: none;
         }
+    
+        .show-case-item {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+    
+        .show-case-item:hover {
+            background-color: black;
+            filter: brightness(50%);
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5), inset 5px 5px 15px rgba(0, 0, 0, 0.527);
+            transform: scale(0.991);
+            transform-origin: center;
+        }
+
+        .blur{
+            transition: filter 1.5s ease;
+            filter: blur(5px);
+        }
+
     </style>
 </head>
 <body>
@@ -51,24 +88,70 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-center">
-        <img src="Images/dagnija-samsone-CvsDeBDCK1U-unsplash.jpg" alt="" style="width: 80%;">
+    <div name="HiddenVideoPlayer">
+        <iframe type="text/html" width="500" height="250" title="YouTube video player"
+            src="https://www.youtube.com/embed/eHqw900CuTY?autoplay=1&mute=0&loop=1&playlist=eHqw900CuTY"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture mute=0"
+            referrerpolicy="strict-origin-when-cross-origin" frameborder="0" allowfullscreen style="display: none;">
+        </iframe>
     </div>
 
+    <div id="CurrentModalBox"></div>
+    <!-- <iframe id="CurrentModalBox" src="modal_showcase.html" frameborder="0" class="modal_box"></iframe> -->
+
+    <div id="Showcase" class="d-flex pt-5 pb-5 mt-5 mb-5">
+        <div class="row m-0 p-0">
+            <div class="col m-1 ms-0 p-0">
+                <img src="Images/Works/UnityGameMaking-Logo.png" class="img-fluid object-fit-cover btn rounded-0 m-0 p-0 show-case-item" alt="" style="height: 75vh;"
+                name="ShowcaseElement" onclick="OpenShowCaseImage('UnityWorks')">
+            </div>
+            <div class="col m-1 p-0">
+                <img src="Images/Works/model_showcase_logo.png" class="img-fluid object-fit-cover btn rounded-0 m-0 p-0 show-case-item" alt="" style="height: 75vh;"
+                name="ShowcaseElement" onclick="OpenShowCaseImage('3DWorks')">
+            </div>
+            <div class="col m-1 p-0">
+                <img src="Images/Works/unreal-engine-4-emblema.jpg" class="img-fluid object-fit-cover btn rounded-0 m-0 p-0 show-case-item" alt="" style="height: 75vh;"
+                name="ShowcaseElement" onclick="OpenShowCaseImage('UnrealWorks')">
+            </div>
+            <div class="col m-1 me-0 p-0">
+                <img src="Images/Works/webdev_logo.jpg" class="img-fluid object-fit-cover btn rounded-0 m-0 p-0 show-case-item" alt="" style="height: 75vh;"
+                name="ShowcaseElement" onclick="OpenShowCaseImage('WebWorks')">
+            </div>
+        </div>
+    </div>
+
+    <!-- <div id="FPSShoterGameContainer" class="iframe-container">
+        <iframe id="FPSGameProject"
+            src="https://play.unity.com/api/v1/games/game/0cde301e-13a9-4b3d-b757-ed6df636f252/build/latest/frame?access_token=hhCj-G9K0M8hHYyMzxWhNHomkHUxkszYde7H0MH3b0s011f"
+            allow="" allowfullscreen></iframe>
+
+        <div id = "GameLoadingScreen" class="bg-secondary d-flex justify-content-center align-items-center" style="position :absolute; height: 100%; width: 100%; z-index: -1000;">
+            <div class="alert" role="alert">
+                <h3 class="mb-0 text-center">Loading...</h3>
+            </div>
+        </div>
+
+    </div> -->
+    
     <div id="Game Project">
         <h2 class="text-center m-2 p-2">The last game delevoped by me</h2>
-        <!-- <iframe src="https://play.unity.com/en/games/0cde301e-13a9-4b3d-b757-ed6df636f252/deadlines-fps-shooter-12" width="1280" height="720" frameborder="0"></iframe> -->
         <div id="FPSShooterGame" class="d-flex justify-content-center">
-            <div class="iframe-container">
-                <iframe id="FPSGameProject"
+            <div id="FPSShoterGameContainer" class="iframe-container">
+                <div id="FPSShooterPlayButton" class="d-flex justify-content-center align-items-center w-100 h-100 bg-secondary">
+                    <span alt="" style="position: absolute; height: 100%; width: 100%; 
+                        background-image: url('Images/seamless-pattern-star-background-concept-free-vector.jpg'); 
+                        background-size: cover; animation: MoveBackgroundToEnd 15s infinite alternate; animation-fill-mode: forwards"></span>
+                    <button class="btn btn-primary btn-lg z-3" onclick="PlayGame()">Play Game</button>
+                </div>
+                <!-- <iframe id="FPSGameProject"
                     src="https://play.unity.com/api/v1/games/game/0cde301e-13a9-4b3d-b757-ed6df636f252/build/latest/frame?access_token=hhCj-G9K0M8hHYyMzxWhNHomkHUxkszYde7H0MH3b0s011f"
-                    allow="" allowfullscreen=""></iframe>
+                    allow="" allowfullscreen></iframe> -->
 
-                <div id = "GameLoadingScreen" class="bg-secondary d-flex justify-content-center align-items-center" style="position :absolute; height: 100%; width: 100%; z-index: -1000;">
+                <!-- <div id = "GameLoadingScreen" class="bg-secondary d-flex justify-content-center align-items-center" style="position :absolute; height: 100%; width: 100%; z-index: -1000;">
                     <div class="alert" role="alert">
                         <h3 class="mb-0 text-center">Loading...</h3>
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -83,12 +166,23 @@
 
 <script src="navbar.js"></script>
 
+<script src="modal_showcase.html"></script>
+
 <script>
-    
-    choosePage("Home");
 
     window.addEventListener('load', function() {
+
+        choosePage("Home");
+
         fadeIn(document.body, 250); // 2 saniyede fade-in yapar
+
+        const ActiveShowcasesFunc = function (params) {
+                var clickableElements = document.querySelectorAll('.show-case-item');
+                clickableElements.forEach(element => {
+                element.style.pointerEvents = 'auto'; // Tıklanabilirliği durdur
+            });
+        } 
+        AddEventToCloseAction(ActiveShowcasesFunc);
     });
 
     function fadeIn(element, duration) {
@@ -96,40 +190,214 @@
         var interval = 16;  // Yaklaşık 60 fps
         var increment = interval / duration;
 
+        document.body.classList.add('blur');
+
         function animate() {
             opacity += increment;
             if (opacity <= 1) {
                 element.style.opacity = opacity;
                 requestAnimationFrame(animate);
             }
+            else
+            {
+                document.body.classList.remove('blur');
+            }
         }
         animate();
     }
 
-    document.getElementById('fullscreenBtn').addEventListener('click', function() {
-        const iframe = document.getElementById('FPSGameProject');
-        if (iframe.requestFullscreen) {
-            iframe.requestFullscreen();
-        } else if (iframe.mozRequestFullScreen) { // Firefox
-            iframe.mozRequestFullScreen();
-        } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, and Opera
-            iframe.webkitRequestFullscreen();
-        } else if (iframe.msRequestFullscreen) { // IE/Edge
-            iframe.msRequestFullscreen();
+    (function () {
+        document.getElementById('fullscreenBtn').addEventListener('click', function () {
+            const iframe = document.getElementById('FPSGameProject');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // IE/Edge
+                iframe.msRequestFullscreen();
+            }
+        });
+    })();
+
+    (function() {
+        var iframe = document.getElementById('FPSGameProject');
+        var loadScreen = document.getElementById('GameLoadingScreen');
+
+        if (iframe == null)
+            return;
+
+        iframe.onload = function () {
+            setTimeout(function () {
+                loadScreen.remove();
+            }, 15000);
         }
-    });
+        iframe.onerror = function() {
+            loadScreen.innerText = 'İçerik yüklenirken bir hata oluştu.';
+        };
+    })();
 
-    var iframe = document.getElementById('FPSGameProject');
-    var loadScreen = document.getElementById('GameLoadingScreen');
+    function ChangePlayGameBackgroundImage()
+    {
+        let positionX = 0; // Başlangıç X pozisyonu
+        let positionY = 0; // Başlangıç Y pozisyonu
+        const speed = 1; // Hız ayarı
 
-    iframe.onload = function () {
-        setTimeout(function () {
-            loadScreen.remove();
-        }, 15000);
     }
-    iframe.onerror = function() {
-        loadScreen.innerText = 'İçerik yüklenirken bir hata oluştu.';
-    };
+
+    function PlayGame(params) {
+        var Frame = `<iframe id="FPSGameProject"
+                    src="https://play.unity.com/api/v1/games/game/0cde301e-13a9-4b3d-b757-ed6df636f252/build/latest/frame?access_token=hhCj-G9K0M8hHYyMzxWhNHomkHUxkszYde7H0MH3b0s011f"
+                    allow="" allowfullscreen></iframe>`;
+        
+        var LoadingScreen = `<div id = "GameLoadingScreen" class="bg-secondary d-flex justify-content-center align-items-center" style="position: absolute; height: 100%; width: 100%; z-index: -1000;">
+                    <div class="alert" role="alert">
+                    <h3 class="mb-0 text-center">Loading...</h3></div>
+                    </div>`;
+
+        var FrameContainer = document.getElementById("FPSShoterGameContainer");
+
+        FrameContainer.innerHTML = LoadingScreen + Frame;
+
+        var loadScreen = document.getElementById('GameLoadingScreen');
+        setTimeout(function () {
+                loadScreen.remove();
+            }, 15000);
+
+        var PlayButton = document.getElementById("FPSShooterPlayButton");
+        
+        PlayButton.remove();
+    }
+
+    function OpenShowCaseImage(ShowCaseName)
+    {
+        var HeaderText;
+        var DescriptionText;
+        var ImageSource;
+        var ModalIndex = 0;
+
+        switch (ShowCaseName) {
+            case "UnityWorks":
+                HeaderText = 'Unity Works';
+                DescriptionText = `I started developing games with Unity a few years ago. Using Unity is not easy, even if my projects haven't attracted much attention, I know Unity well enough to make the engine do almost anything. 
+                Usually I mostly worked on the algorithm side of my projects,
+                I think there are two possibilities about this: the game market has become strange and very difficult, there is extreme conservatism among groups, or most people do not like my projects.. 
+                If there had been interest in the projects at first, I would have definitely worked on it and made it more complete, but I didn't see any interest and I don't want to waste any time, 
+                I didn't want to create a game that took a long time to develop and that no one will play later.
+                Some of the media where my projects are featured: 
+                <a href="https://assetstore.unity.com/publishers/45554" target="_blank">Asset Store</a> 
+                <a href="https://play.google.com/store/apps/dev?id=6657032898309490447" target="_blank">Google Play Store Games</a> 
+                <a href="https://play.unity.com/en/games/0cde301e-13a9-4b3d-b757-ed6df636f252/deadlines-fps-shooter-12" target="_blank">FPS Shooter Game Sample</a> 
+                <a href="https://apkpure.com/tr/daihazard/com.Stalwart.PlanetBiohazard" target="_blank">FPS Shooter Game Sample</a>.
+                
+                `;
+                ImageSource = "Images/Works/UnityGameMaking.png";
+                ModalIndex = 0;
+                break;
+            case "3DWorks":
+                HeaderText = '3D Modelling Works';
+                DescriptionText = `I'm not really interested in doing characters and animations at a very deep level, but I can do the basic structures easily.
+                Since we had limited time, I couldn't go into depth about 3D modeling, but if there is such a tendency, I can do it. Drawing 3D models is also interesting to me.
+                The web page where some of my 3D models are located:
+                <a href="https://sketchfab.com/st4lwart" target="_blank">Sketchfab Link</a> 
+                `;
+                ImageSource = "Images/Works/model_showcase.png";
+                ModalIndex = 1;
+                break;
+            case "UnrealWorks":
+                HeaderText = 'Unreal Engine Works';
+                DescriptionText = `Since I couldn't do anything profitable with Unity, I didn't bother with Unreal Engine much. 
+                I only know the basics, but I plan to learn it in the future. Or if things start going in that direction, I'll learn that too. I usually learn computer programs quickly.`;
+                ImageSource = "Images/Works/to_be_cont.png";
+                ModalIndex = 2;
+                break;
+            case "WebWorks":
+                HeaderText = 'Web application developing works';
+                DescriptionText = `I didn't have much advanced knowledge about web application development before, but recently I decided to specialize in it.`;
+                ImageSource = "Images/Works/web_app_dev.png";
+                ModalIndex = 3;
+                break;
+        }
+
+        var CurrentModalBox = document.getElementById("CurrentModalBox");
+
+        OpenShowcaseModal(HeaderText, DescriptionText, ImageSource, ModalIndex);
+
+        var clickableElements = document.querySelectorAll('.show-case-item');
+
+        clickableElements.forEach(element => {
+            element.style.pointerEvents = 'none';
+        });
+    }
+
+    function Raintest()
+    {
+        var Parent = document.createElement("div")
+        Parent.id = "RainContainer";
+
+        Parent.setAttribute("style",
+        `  
+            position: fixed;
+            background: linear-gradient(rgba(0, 0, 17, 0.452), #33333369);
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        `);
+
+        document.body.appendChild(Parent);
+
+        var rain = document.createElement("span");
+
+        rain.setAttribute("style",
+            `
+                position: absolute;
+                top: -20px;
+                width: 2px;
+                height: 60px;
+                border-radius: 20px;
+                background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8));
+                left: calc(var(--i) * 10%);
+                z-index: 9999999;
+                transform: rotate(10deg);
+            `
+        );
+
+        const newspaperSpinning = [
+            { transform: "" },
+            { transform: "translateX(-10vh) translateY(100vh)" },
+            ];
+
+        const newspaperTiming = {
+            duration: 2000,
+            iterations: 1,
+            };
+
+        // rain.animate(newspaperSpinning, newspaperTiming);
+
+        for (let index = 0; index < 100; index++) {
+
+            var Instanced = rain.cloneNode(true);
+            var Added = Parent.appendChild(Instanced);
+
+            let randomSpeed = (Math.random() * 1.5 + 0.5).toFixed(2);
+            let randomPosition = Math.floor(Math.random() * 100);
+
+            Added.style.animationDuration = `${randomSpeed}s`;
+            Added.style.left = `${randomPosition}%`;
+
+            const newspaperTiming = {
+            duration: Math.random() * 1000 + 500,
+            iterations: 100,
+            };
+
+
+            Added.animate(newspaperSpinning, newspaperTiming);
+        }
+    }
 
 </script>
 

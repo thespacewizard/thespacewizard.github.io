@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yatay Background Position Animasyonu</title>
+    <style>
+
+        /* @keyframes ile background-position animasyonu tanımlıyoruz */
+        @keyframes moveBackground {
+            0% {
+                background-position: 0% 0%; /* Başlangıç noktası */
+            }
+            100% {
+                background-position: 100% 0%; /* Arka planın tamamına git */
+            }
+        }
+
+        /* Animasyonu uyguladığımız element */
+        .animated-background {
+            position: absolute;
+            width: 100vh;
+            height: 100vh; /* Sayfanın tamamını kaplar */
+            background-image: url("Images/seamless-pattern-star-background-concept-free-vector.jpg");
+            background-size: cover; /* Arka plan resmini kapsayacak şekilde ayarlama */
+            animation: moveBackground 10s linear infinite; /* Animasyonu başlat */
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-background"></div>
+</body>
+</html>

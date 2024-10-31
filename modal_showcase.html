@@ -1,0 +1,259 @@
+//This page is a script file but has a type of "html"
+//This was done just for better editing options.
+//(This page uses Jquery and bootstrap)
+
+var modal_showcase_body = `
+<style>
+    .modal_content {
+        background-color: rgb(244, 243, 247);
+        z-index: 99999;
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+
+    .close_button {
+        transition: all 0.2s ease;
+
+        position: absolute;
+        right: 0.5%;
+        top: 0.5%;
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        text-align: left;
+        text-shadow: 5px 4px 2px rgba(0, 0, 0, 0.308);
+
+        font-weight: bold;
+        font-size: 40px;
+        cursor: pointer;
+    }
+
+    .close_button:hover{
+        transform-origin: center;
+        transform: scale(1.4);
+    }
+
+    .fullscreen_button{
+        transition: all 0.2s ease;
+
+        position: absolute;
+        left: 0.5%;
+        top: 0.5%;
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        text-align: left;
+        text-shadow: 5px 4px 2px rgba(0, 0, 0, 0.308);
+
+        font-weight: bold;
+        font-size: 40px;
+        cursor: pointer;
+    }
+
+    .fullscreen_button:hover{
+        transform-origin: center;
+        transform: scale(1.4);
+    }
+
+    .nextmodal_button{
+        transition: all 0.2s ease;
+
+        position: absolute;
+        right: 0.5%;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        text-align: left;
+        text-shadow: 5px 4px 2px rgba(0, 0, 0, 0.308);
+
+        font-weight: bold;
+        font-size: 40px;
+        cursor: pointer;
+    }
+
+    .previousmodal_button{
+        transition: all 0.2s ease;
+
+        position: absolute;
+        left: 0.5%;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        text-align: left;
+        text-shadow: 5px 4px 2px rgba(0, 0, 0, 0.308);
+
+        font-weight: bold;
+        font-size: 40px;
+        cursor: pointer;
+    }
+
+</style>
+
+<div id="CurrentModalBoxContent" class="modal_box">
+    <div class="modal_content">
+        <span id="CurrentModalCloseButton" class="close_button" onclick="CloseButton()">&times;</span>
+        <span id="CurrentModalFSButton" class="fullscreen_button" onclick="FullscreenButton()">⛶</span>
+        <span id="CurrentModalNext" class="nextmodal_button" onclick="NextShowCaseButton()">»</span>
+        <span id="CurrentModalPrevious" class="previousmodal_button" onclick="PreviousShowCaseButton()">«</span>
+
+        <div name="modal_innerbox" class="d-flex align-items-center justify-content-center"> <!-- used bootstrap -->
+            <div class="w-75 h-75">
+                <img id="CurrentShowCase_Image" src="Images/Works/chest_social.png" class="w-100 h-100" alt="About Us">
+             </div>
+            <div class="w-50 h-50 text-center">
+                <h2 id="CurrentShowCase_Header" class="m-3 p-3">Description</h2>
+                <p id="CurrentShowCase_Description" class="m-3 p-3">Would you like to learn more about me and my work or to learn about collaboration opportunities for future projects? 
+                    Contact whenever you want. I would be happy to talk to you.
+                    Would you like to learn more about me and my work or to learn about collaboration opportunities for future projects? Feel free to contact!</p>
+    
+                <p class="m-3 p-3">spacewizardcommn5140@gmail.com</p>
+                
+                <div id="Button">
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+                    <a href="https://www.linkedin.com/in/st4lwart" target="_blank" class="btn btn-lg">
+                        <i class="fab fa-lg fa-linkedin"></i>
+                      </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+`;
+
+//<script>
+
+    var CurrentClickedItemIndex = 0;
+    var CloseCallbackEvents = [];
+
+    function AddEventToCloseAction(newEvent)
+    {
+        CloseCallbackEvents.push(newEvent);
+    }
+
+    function OpenShowcaseModal(headerText, descriptionText, imageSrc, clickedItemIndex){
+        var CurrentModalBox = document.getElementById("CurrentModalBox");
+
+        CurrentModalBox.innerHTML = modal_showcase_body;
+        // console.log("runned");
+
+        var ModalBoxContent = document.getElementById("CurrentModalBoxContent");
+        $(ModalBoxContent).css("opacity", 0);
+        $(ModalBoxContent).fadeTo(500, 1);
+
+        var Header = document.getElementById("CurrentShowCase_Header");
+        var Description = document.getElementById("CurrentShowCase_Description");
+
+        Header.innerHTML = headerText;
+        Description.innerHTML = descriptionText;
+
+        var Image = document.getElementById("CurrentShowCase_Image");
+        Image.src = imageSrc;
+
+        document.addEventListener('mouseup', handleClickOutside);
+
+        CurrentClickedItemIndex = clickedItemIndex;
+    };
+
+    function CloseButton() {
+        var ModalBoxContent = document.getElementById("CurrentModalBoxContent");
+        // $(ModalBoxContent).css("opacity", 0);
+        $(ModalBoxContent).fadeTo(500, 0, function() {
+            $(ModalBoxContent).css("opacity", 1);
+            var CurrentModalBox = document.getElementById("CurrentModalBox");
+            CurrentModalBox.innerHTML = null;
+
+            CloseCallbackEvents.forEach(funcs => {
+                funcs();
+            });
+        });
+    }
+
+    function FullscreenButton()
+    {
+        var Image = document.getElementById("CurrentShowCase_Image");
+        Image.requestFullscreen();
+    }
+
+    function NextShowCaseButton()
+    {
+        const ShowCasesList = document.getElementsByName("ShowcaseElement");
+
+        const ShowCasesArray = Array.from(ShowCasesList);
+
+        // console.log(ShowCasesArray);
+
+        // ShowCasesArray.forEach((Content) => {
+        //     console.log(Content.src);
+        // });
+
+        if (ShowCasesArray.length > 0)
+            if (ShowCasesArray[CurrentClickedItemIndex + 1] != null)
+            {
+                ShowCasesArray[CurrentClickedItemIndex + 1].click();
+            }
+            else
+            {
+                ShowCasesArray[0].click();
+            }
+    }
+
+    function PreviousShowCaseButton()
+    {
+        const ShowCasesList = document.getElementsByName("ShowcaseElement");
+
+        const ShowCasesArray = Array.from(ShowCasesList);
+
+        // console.log(ShowCasesArray);
+
+        // ShowCasesArray.forEach((Content) => {
+        //     console.log(Content.src);
+        // });
+
+        if (ShowCasesArray.length > 0)
+            if (ShowCasesArray[CurrentClickedItemIndex - 1] != null)
+            {
+                ShowCasesArray[CurrentClickedItemIndex - 1].click();
+            }
+            else
+            {
+                ShowCasesArray[ShowCasesArray.length - 1].click();
+            }
+    }
+
+    function handleClickOutside(event) {
+
+        const myElement = document.getElementById('CurrentModalBoxContent');
+        if (myElement == null)
+            return;
+        
+        if (!myElement.contains(event.target)) {
+            CloseButton();
+        }
+    }
+
+//</script>
