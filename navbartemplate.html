@@ -6,6 +6,9 @@ const htmlString = `
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navbar</title>
 
+    <!-- Preloads -->
+    <link rel="preload" href="Images/Effects/Lightning.png" as="image">
+
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -35,11 +38,11 @@ const htmlString = `
         }
 
         body {
-            padding-top: 100px; /* Navbar'ın üst kısmından dolayı sayfanın üst kısmında bir boşluk bırakır */
+            padding-top: 100px;
         }
 
         .rotating-logo {
-            animation: spin 5s linear infinite; /* 5 saniyede bir tam tur, sonsuz döngü */
+            animation: spin 5s linear infinite;
         }
 
         .logo-image {
@@ -52,9 +55,9 @@ const htmlString = `
         .square-button {
             height: 65px;
             display: flex;
-            justify-content: center; /* Yatay ortalar */
-            align-items: center; /* Dikey ortalar */
-            border-radius: 0; /* Köşeleri tamamen köşeli yapar */
+            justify-content: center;
+            align-items: center; 
+            border-radius: 0;
             border: none;
             /* background-color: #000;
             color: white; */
@@ -68,7 +71,7 @@ const htmlString = `
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top p-0 m-0">
+<nav id="PageNavbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top p-0 m-0">
     <div class="container-fluid">
         
         <a href="#">
@@ -85,7 +88,7 @@ const htmlString = `
                 <a id="NavbarAbout" class="btn btn-light square-button">Hakkımızda</a>
                 <a id="NavbarServices" class="btn btn-light square-button">Çalışmalar</a>
                 <a id="NavbarContact" class="btn btn-light square-button">İletişim</a>
-                <a id="?Button" class="btn btn-light square-button">?</a>
+                <a id="?Button" class="btn btn-light square-button">☂️</a>
             </div>
 
         </div>
@@ -115,6 +118,17 @@ const htmlString = `
 </html>
 
 `;
+
+//preload objects
+(function() {
+
+    //lightning
+    const imagePath = 'Images/Effects/Lightning.png';
+    const img = new Image();
+    img.src = imagePath;
+
+})();
+
 // console.log("nav imported");
 document.getElementById('navbar').innerHTML = htmlString;
 

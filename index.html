@@ -71,6 +71,15 @@
             filter: blur(5px);
         }
 
+        .scroll-effect-container{
+            overflow: hidden;
+        }
+
+        .scroll-effect {
+            transform: translateX(0);
+            transition: transform 0.5s ease-out;
+        }
+
     </style>
 </head>
 <body>
@@ -78,48 +87,56 @@
 <div id="navbar"></div>
 
 <div id="Page">
-    <div class="container full-height d-flex justify-content-center align-items-center mt-5 pt-4 mb-5 pb-5">
-        <div class="text-center">
-            <h1 class="display-1">Welcome</h1>
-            <p class="lead mt-5">We have had the opportunity to carry out various projects in this dynamic industry,
-                from experimental projects on topics that I am passionate about to work I do for clients. We enjoy
-                creative challenges and building strong relationships along the way.
-                Explore my work below and get in touch to learn more.</p>
+
+    <div class="scroll-effect-container">
+        <div class="scroll-effect" scroll-additive-offset="0">
+            <div class="container full-height d-flex justify-content-center align-items-center mt-5 pt-4 mb-5 pb-5">
+                <div class="text-center">
+                    <h1 class="display-1">Welcome</h1>
+                    <p class="lead mt-5">We have had the opportunity to carry out various projects in this dynamic industry,
+                        from experimental projects on topics that I am passionate about to work I do for clients. We enjoy
+                        creative challenges and building strong relationships along the way.
+                        Explore my work below and get in touch to learn more.</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div name="HiddenVideoPlayer">
+    <!-- <div name="HiddenVideoPlayer">
         <iframe type="text/html" width="500" height="250" title="YouTube video player"
             src="https://www.youtube.com/embed/eHqw900CuTY?autoplay=1&mute=0&loop=1&playlist=eHqw900CuTY"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture mute=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; mute=0;"
             referrerpolicy="strict-origin-when-cross-origin" frameborder="0" allowfullscreen style="display: none;">
         </iframe>
-    </div>
+    </div> -->
 
     <div id="CurrentModalBox"></div>
     <!-- <iframe id="CurrentModalBox" src="modal_showcase.html" frameborder="0" class="modal_box"></iframe> -->
 
-    <div id="Showcase" class="d-flex pt-5 pb-5 mt-5 mb-5">
-        <div class="row m-0 p-0">
-            <div class="col m-1 ms-0 p-0">
-                <img src="Images/Works/UnityGameMaking-Logo.png" class="img-fluid object-fit-cover btn rounded-0 m-0 p-0 show-case-item" alt="" style="height: 75vh;"
-                name="ShowcaseElement" onclick="OpenShowCaseImage('UnityWorks')">
-            </div>
-            <div class="col m-1 p-0">
-                <img src="Images/Works/model_showcase_logo.png" class="img-fluid object-fit-cover btn rounded-0 m-0 p-0 show-case-item" alt="" style="height: 75vh;"
-                name="ShowcaseElement" onclick="OpenShowCaseImage('3DWorks')">
-            </div>
-            <div class="col m-1 p-0">
-                <img src="Images/Works/unreal-engine-4-emblema.jpg" class="img-fluid object-fit-cover btn rounded-0 m-0 p-0 show-case-item" alt="" style="height: 75vh;"
-                name="ShowcaseElement" onclick="OpenShowCaseImage('UnrealWorks')">
-            </div>
-            <div class="col m-1 me-0 p-0">
-                <img src="Images/Works/webdev_logo.jpg" class="img-fluid object-fit-cover btn rounded-0 m-0 p-0 show-case-item" alt="" style="height: 75vh;"
-                name="ShowcaseElement" onclick="OpenShowCaseImage('WebWorks')">
+    <div class="scroll-effect-container">
+        <div class="scroll-effect" scroll-additive-offset="200">
+            <div id="Showcase" class="d-flex pt-5 pb-5 mt-5 mb-5">
+                <div class="row m-0 p-0">
+                    <div class="col m-1 ms-0 p-0">
+                        <img src="Images/Works/UnityGameMaking-Logo.png" class="img-fluid object-fit-cover btn rounded-0 m-0 p-0 show-case-item" alt="" style="height: 75vh;"
+                        name="ShowcaseElement" onclick="OpenShowCaseImage('UnityWorks')">
+                    </div>
+                    <div class="col m-1 p-0">
+                        <img src="Images/Works/model_showcase_logo.png" class="img-fluid object-fit-cover btn rounded-0 m-0 p-0 show-case-item" alt="" style="height: 75vh;"
+                        name="ShowcaseElement" onclick="OpenShowCaseImage('3DWorks')">
+                    </div>
+                    <div class="col m-1 p-0">
+                        <img src="Images/Works/unreal-engine-4-emblema.jpg" class="img-fluid object-fit-cover btn rounded-0 m-0 p-0 show-case-item" alt="" style="height: 75vh;"
+                        name="ShowcaseElement" onclick="OpenShowCaseImage('UnrealWorks')">
+                    </div>
+                    <div class="col m-1 me-0 p-0">
+                        <img src="Images/Works/webdev_logo.jpg" class="img-fluid object-fit-cover btn rounded-0 m-0 p-0 show-case-item" alt="" style="height: 75vh;"
+                        name="ShowcaseElement" onclick="OpenShowCaseImage('WebWorks')">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
     <!-- <div id="FPSShoterGameContainer" class="iframe-container">
         <iframe id="FPSGameProject"
             src="https://play.unity.com/api/v1/games/game/0cde301e-13a9-4b3d-b757-ed6df636f252/build/latest/frame?access_token=hhCj-G9K0M8hHYyMzxWhNHomkHUxkszYde7H0MH3b0s011f"
@@ -133,33 +150,38 @@
 
     </div> -->
     
-    <div id="Game Project">
-        <h2 class="text-center m-2 p-2">The last game delevoped by me</h2>
-        <div id="FPSShooterGame" class="d-flex justify-content-center">
-            <div id="FPSShoterGameContainer" class="iframe-container">
-                <div id="FPSShooterPlayButton" class="d-flex justify-content-center align-items-center w-100 h-100 bg-secondary">
-                    <span alt="" style="position: absolute; height: 100%; width: 100%; 
-                        background-image: url('Images/seamless-pattern-star-background-concept-free-vector.jpg'); 
-                        background-size: cover; animation: MoveBackgroundToEnd 15s infinite alternate; animation-fill-mode: forwards"></span>
-                    <button class="btn btn-primary btn-lg z-3" onclick="PlayGame()">Play Game</button>
-                </div>
-                <!-- <iframe id="FPSGameProject"
-                    src="https://play.unity.com/api/v1/games/game/0cde301e-13a9-4b3d-b757-ed6df636f252/build/latest/frame?access_token=hhCj-G9K0M8hHYyMzxWhNHomkHUxkszYde7H0MH3b0s011f"
-                    allow="" allowfullscreen></iframe> -->
+    <div class="scroll-effect-container">
+        <div class="scroll-effect" scroll-additive-offset="150">
+            <div id="Game Project">
+                <h2 class="text-center m-2 p-2">The last game delevoped by me</h2>
+                <div id="FPSShooterGame" class="d-flex justify-content-center">
+                    <div id="FPSShoterGameContainer" class="iframe-container">
+                        <div id="FPSShooterPlayButton" class="d-flex justify-content-center align-items-center w-100 h-100 bg-secondary">
+                            <span alt="" style="position: absolute; height: 100%; width: 100%; 
+                                background-image: url('Images/seamless-pattern-star-background-concept-free-vector.jpg'); 
+                                background-size: cover; animation: MoveBackgroundToEnd 15s infinite alternate; animation-fill-mode: forwards"></span>
+                            <button class="btn btn-primary btn-lg z-3" onclick="PlayGame()">Play Game</button>
+                        </div>
+                        <!-- <iframe id="FPSGameProject"
+                            src="https://play.unity.com/api/v1/games/game/0cde301e-13a9-4b3d-b757-ed6df636f252/build/latest/frame?access_token=hhCj-G9K0M8hHYyMzxWhNHomkHUxkszYde7H0MH3b0s011f"
+                            allow="" allowfullscreen></iframe> -->
 
-                <!-- <div id = "GameLoadingScreen" class="bg-secondary d-flex justify-content-center align-items-center" style="position :absolute; height: 100%; width: 100%; z-index: -1000;">
-                    <div class="alert" role="alert">
-                        <h3 class="mb-0 text-center">Loading...</h3>
+                        <!-- <div id = "GameLoadingScreen" class="bg-secondary d-flex justify-content-center align-items-center" style="position :absolute; height: 100%; width: 100%; z-index: -1000;">
+                            <div class="alert" role="alert">
+                                <h3 class="mb-0 text-center">Loading...</h3>
+                            </div>
+                        </div> -->
+
                     </div>
-                </div> -->
-
+                </div>
+                <div id="FulscreenButton" class="d-flex justify-content-center">
+                    <button id="fullscreenBtn" class="btn btn-secondary m-2">Fullscreen</button> <!-- Fullscreen button -->
+                </div>
+                <h6 class="text-center m-2 p-2"> Warning: In some browsers, the "CTRL-W" combination closes the page and unfortunately there is no way to disable it from there, you can crouch alternatively in the game by pressing the "C" key. </h6>
             </div>
         </div>
-        <div id="FulscreenButton" class="d-flex justify-content-center">
-            <button id="fullscreenBtn" class="btn btn-secondary m-2">Fullscreen</button> <!-- Fullscreen button -->
-        </div>
-        <h6 class="text-center m-2 p-2"> Warning: In some browsers, the "CTRL-W" combination closes the page and unfortunately there is no way to disable it from there, you can crouch alternatively in the game by pressing the "C" key. </h6>
     </div>
+
 
     <div id="CR" class="text-center m-4 p-4">Developed by İlyas Korkmaz</div>
 </div>
@@ -279,42 +301,55 @@
 
         switch (ShowCaseName) {
             case "UnityWorks":
-                HeaderText = 'Unity Works';
-                DescriptionText = `I started developing games with Unity a few years ago. Using Unity is not easy, even if my projects haven't attracted much attention, I know Unity well enough to make the engine do almost anything. 
-                Usually I mostly worked on the algorithm side of my projects,
-                I think there are two possibilities about this: the game market has become strange and very difficult, there is extreme conservatism among groups, or most people do not like my projects.. 
-                If there had been interest in the projects at first, I would have definitely worked on it and made it more complete, but I didn't see any interest and I don't want to waste any time, 
-                I didn't want to create a game that took a long time to develop and that no one will play later.
-                Some of the media where my projects are featured: 
-                <a href="https://assetstore.unity.com/publishers/45554" target="_blank">Asset Store</a> 
-                <a href="https://play.google.com/store/apps/dev?id=6657032898309490447" target="_blank">Google Play Store Games</a> 
-                <a href="https://play.unity.com/en/games/0cde301e-13a9-4b3d-b757-ed6df636f252/deadlines-fps-shooter-12" target="_blank">FPS Shooter Game Sample</a> 
-                <a href="https://apkpure.com/tr/daihazard/com.Stalwart.PlanetBiohazard" target="_blank">FPS Shooter Game Sample</a>.
+                HeaderText = 'Unity Developer Experience';
+                DescriptionText = `I started working with Unity a few years ago and have since developed a variety of projects on the platform. In game development, 
+                I place a strong emphasis on algorithms and code structure, which enhances the efficiency and functionality of my projects. Thanks to my algorithmic thinking skills, 
+                I am able to implement complex game mechanics and create optimized, well-organized code structures that ensure the sustainability of my projects.
+                While my focus hasn’t been on visual design, my projects are robust in terms of code quality and algorithmic structure. When I encounter challenges, 
+                I strive to create performance-oriented and innovative solutions. I have experience with essential areas in Unity such as basic animations, 
+                physics, and user interactions, and I enjoy applying this knowledge to new projects.<br>
+                Some individual projects: <br>
+                <a href="https://assetstore.unity.com/publishers/45554" target="_blank">Asset Store</a> <br>
+                <a href="https://play.google.com/store/apps/dev?id=6657032898309490447" target="_blank">Google Play Store Games</a> <br>
+                <a href="https://play.unity.com/en/games/0cde301e-13a9-4b3d-b757-ed6df636f252/deadlines-fps-shooter-12" target="_blank">FPS Shooter Game Sample</a> <br>
+                <a href="https://apkpure.com/tr/daihazard/com.Stalwart.PlanetBiohazard" target="_blank">Daihazard</a>. (not available in Google Play).
                 
                 `;
                 ImageSource = "Images/Works/UnityGameMaking.png";
                 ModalIndex = 0;
                 break;
             case "3DWorks":
-                HeaderText = '3D Modelling Works';
-                DescriptionText = `I'm not really interested in doing characters and animations at a very deep level, but I can do the basic structures easily.
-                Since we had limited time, I couldn't go into depth about 3D modeling, but if there is such a tendency, I can do it. Drawing 3D models is also interesting to me.
-                The web page where some of my 3D models are located:
+                HeaderText = '3D Modeling Experience';
+                DescriptionText = `I have experience in 3D modeling, primarily using Blender as my main tool. 
+                I’m proficient in creating and modifying 3D models and have a solid understanding of basic modeling techniques that allow me to shape and sculpt objects effectively. 
+                My focus is on structurally sound and optimized models that maintain quality while remaining efficient for use in game development or other applications.
+                While I have a fundamental grasp of animation basics in Blender, my primary strength lies in modeling rather than advanced animation techniques. <br>
+                I am continuously improving my skills, exploring new tools, and working on refining the technical aspects of my models. When working on projects, 
+                I focus on creating assets that are cleanly structured and functional, ensuring they integrate well into different environments.<br>
+                Samples:<br>
                 <a href="https://sketchfab.com/st4lwart" target="_blank">Sketchfab Link</a> 
                 `;
                 ImageSource = "Images/Works/model_showcase.png";
                 ModalIndex = 1;
                 break;
             case "UnrealWorks":
-                HeaderText = 'Unreal Engine Works';
-                DescriptionText = `Since I couldn't do anything profitable with Unity, I didn't bother with Unreal Engine much. 
-                I only know the basics, but I plan to learn it in the future. Or if things start going in that direction, I'll learn that too. I usually learn computer programs quickly.`;
-                ImageSource = "Images/Works/to_be_cont.png";
+                HeaderText = 'Exploring Unreal Engine';
+                DescriptionText = `I'm new to Unreal Engine and have only taken my first steps, creating and moving a basic cube. However, 
+                I’m eager to dive deeper and build my skills in this engine. The prospect of crafting immersive worlds and creating unique atmospheres is genuinely exciting to me. 
+                The idea of building environments, developing characters, and bringing them to life within intricate settings captures my imagination and motivates me to learn.<br>
+                I’m particularly drawn to the concept of creating worlds that reflect different themes, each with its own atmosphere, 
+                and finding ways to populate these worlds with engaging characters. Learning Unreal Engine is not just about technical skill for me; 
+                it’s about realizing these creative visions and building experiences that resonate with players.`;
+                ImageSource = "Images/Works/unreal-engine-4-emblema.jpg";
                 ModalIndex = 2;
                 break;
             case "WebWorks":
-                HeaderText = 'Web application developing works';
-                DescriptionText = `I didn't have much advanced knowledge about web application development before, but recently I decided to specialize in it.`;
+                HeaderText = 'Web Design and Development';
+                DescriptionText = `I have a solid understanding of front-end web development and can comfortably build user interfaces at an intermediate level, 
+                though I don’t consider myself an expert just yet. My skills include creating visually engaging and functional designs, focusing on providing a good user experience. 
+                While I’m mostly focused on front-end, I'm also building my knowledge in back-end development, where I currently have a basic understanding. 
+                I'm actively working to enhance my back-end skills to become a more versatile developer.<br>
+                Learning web design and development has been an exciting journey, and I’m driven to keep expanding my skill set to create seamless and fully functional web applications.`;
                 ImageSource = "Images/Works/web_app_dev.png";
                 ModalIndex = 3;
                 break;
@@ -331,73 +366,32 @@
         });
     }
 
-    function Raintest()
+    function ScrollEffect()
     {
-        var Parent = document.createElement("div")
-        Parent.id = "RainContainer";
+        const elements = document.querySelectorAll(".scroll-effect");
+        const additiveMargin = 5;
 
-        Parent.setAttribute("style",
-        `  
-            position: fixed;
-            background: linear-gradient(rgba(0, 0, 17, 0.452), #33333369);
-            width: 100%;
-            height: 100vh;
-            top: 0;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        `);
+        // Scroll event
+        window.addEventListener("scroll", () => {
+        elements.forEach((element) => {
+            const scrollPosition = window.scrollY;
+            const elementPosition = element.offsetTop; 
 
-        document.body.appendChild(Parent);
+            const scrollOffsetAttribute = Number(element.getAttribute('scroll-additive-offset'));
+            const elementAdditiveOffset = scrollOffsetAttribute !== null ? scrollOffsetAttribute : 0;
+            
+            const difference = (scrollPosition + additiveMargin) - (elementPosition + elementAdditiveOffset);
+            const movementValue = Math.min(difference > 0 ? difference : difference, 200);
 
-        var rain = document.createElement("span");
-
-        rain.setAttribute("style",
-            `
-                position: absolute;
-                top: -20px;
-                width: 2px;
-                height: 60px;
-                border-radius: 20px;
-                background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8));
-                left: calc(var(--i) * 10%);
-                z-index: 9999999;
-                transform: rotate(10deg);
-            `
-        );
-
-        const newspaperSpinning = [
-            { transform: "" },
-            { transform: "translateX(-10vh) translateY(100vh)" },
-            ];
-
-        const newspaperTiming = {
-            duration: 2000,
-            iterations: 1,
-            };
-
-        // rain.animate(newspaperSpinning, newspaperTiming);
-
-        for (let index = 0; index < 100; index++) {
-
-            var Instanced = rain.cloneNode(true);
-            var Added = Parent.appendChild(Instanced);
-
-            let randomSpeed = (Math.random() * 1.5 + 0.5).toFixed(2);
-            let randomPosition = Math.floor(Math.random() * 100);
-
-            Added.style.animationDuration = `${randomSpeed}s`;
-            Added.style.left = `${randomPosition}%`;
-
-            const newspaperTiming = {
-            duration: Math.random() * 1000 + 500,
-            iterations: 100,
-            };
-
-
-            Added.animate(newspaperSpinning, newspaperTiming);
-        }
+            if (scrollPosition + additiveMargin >= elementPosition + elementAdditiveOffset) {
+                element.style.transform = `translateX(calc(${movementValue} * 1vh))`; // Sola kaydırma
+            } else {
+                element.style.transform = "translateX(0)";
+            }
+        });
+        });
     }
+    ScrollEffect();
 
 </script>
 
