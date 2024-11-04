@@ -88,6 +88,7 @@ const htmlString = `
                 <a id="NavbarAbout" class="btn btn-light square-button">Hakkımızda</a>
                 <a id="NavbarServices" class="btn btn-light square-button">Çalışmalar</a>
                 <a id="NavbarContact" class="btn btn-light square-button">İletişim</a>
+                <a id="Chatroom" class="btn btn-light square-button">Chatroom</a>
                 <a id="?Button" class="btn btn-light square-button">☂️</a>
             </div>
 
