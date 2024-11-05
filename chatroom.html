@@ -36,13 +36,85 @@
                 <div id="userarea" class="d-flex bg-light m-3 align-items-center userarea">
                     <input type="text" id="username" placeholder="Who from" class="ms-2 me-2"/>
                     <input type="text" id="content" placeholder="Message" class="ms-2 me-2"/>
-                    <button onclick="sendMessage()" class="ms-2 me-2">Send</button>
+                    <button id="sendmessage" class="ms-2 me-2">Send</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="restdbapp.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+        import { getDatabase, push, ref, set, onValue} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyB9RmQf70qUfvbcKIPR2_-UXNZon-JQyQk",
+          authDomain: "chatroom-spacewizard.firebaseapp.com",
+          databaseURL: "https://chatroom-spacewizard-default-rtdb.firebaseio.com",
+          projectId: "chatroom-spacewizard",
+          storageBucket: "chatroom-spacewizard.firebasestorage.app",
+          messagingSenderId: "145270320659",
+          appId: "1:145270320659:web:283a21b80b3957363d99e6",
+          measurementId: "G-R1QDR06B1G"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        const database = getDatabase(app);
+
+        document.getElementById("sendmessage").onclick = saveMessage;
+
+        function saveMessage() {
+
+            const username = document.getElementById("username").value;
+            const content = document.getElementById("content").value;
+
+            const now = new Date();
+            const formattedDate = `${now.getHours()}:${now.getMinutes()} ${now.getUTCFullYear()}/${now.getUTCMonth()}/${now.getUTCDay()}`;
+
+            push(ref(database, 'Messages'), {
+                username: username,
+                message: content,
+                messagedate: formattedDate
+            });
+        }
+
+        function readMessages()
+        {
+            const messageRef = ref(database, 'Messages');
+                onValue(messageRef, (snapshot) => {
+                const data = snapshot.val();
+                
+                const messagesDiv = document.getElementById("messagebox");
+
+                messagesDiv.innerHTML = "";
+
+                for (let key in data) {
+                    // console.log(key);
+                    const messageElement = document.createElement("div");
+                    messageElement.innerHTML = `<b>${data[key].username}</b>: ${data[key].message}  <i>(Message Date: ${data[key].messagedate})</i>`;
+                    messagesDiv.appendChild(messageElement);
+                }
+                // const messagesDiv = document.getElementById("messagebox");
+                
+                // data.forEach(message => {
+                //     const messageElement = document.createElement("div");
+                //     messageElement.innerHTML = `<b>${message.username}</b>: ${message.messagecontent}  <i>(Message Date: ${message.messagedate})</i>`;
+                //     messagesDiv.appendChild(messageElement);
+                // });
+            });
+        }
+        
+        readMessages();
+
+    </script>
 
     <script src="navbar.js"></script>
 </body>
