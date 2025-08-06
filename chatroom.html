@@ -27,16 +27,23 @@
 <body>
     <div id="navbar"></div>
 
+    <div id="loginparent" class="bg-light mb-3 d-flex justify-content-center align-items-center" style="width: 100%;">
+        <div class="bg-primary-subtle m-4 mt-2 mb-2 rounded d-flex flex-row-reverse align-items-center"  style="height: 5vh; width: 100%;">
+            <button id="Login" class="ms-1 me-1 btn btn-primary border rounded-0 d-flex justify-content-center align-items-center" style="width: 10vh; height: 85%;">Login</button>
+            <button id="Signup" class="ms-1 me-1 btn btn-primary border rounded-0 d-flex justify-content-center align-items-center" style="width: 10vh; height: 85%;">Sign Up</button>
+        </div>
+    </div>
+
     <div class="d-flex justify-content-center align-items-center h-100 w-100">
         <div class="p-4 bg-light w-100 h-100">
-            <div class="p-2 bg-secondary">
-                <div id="messagebox" class="m-3 p-3 overflow-scroll messagebox">
+            <div class="p-1 p-md-2 bg-secondary">
+                <div id="messagebox" class="m-1 m-md-3 p-3 overflow-scroll messagebox">
 
                 </div>
-                <div id="userarea" class="d-flex bg-light m-3 align-items-center userarea">
-                    <input type="text" id="username" placeholder="Who from" class="ms-2 me-2"/>
-                    <input type="text" id="content" placeholder="Message" class="ms-2 me-2"/>
-                    <button id="sendmessage" class="ms-2 me-2">Send</button>
+                <div id="userarea" class="d-flex bg-light m-1 m-md-3 align-items-center userarea">
+                    <input type="text" id="username" placeholder="Who from" class="ms-2 me-2" style="width: 20%; height: 90%; box-sizing: border-box"/>
+                    <input type="text" id="content" placeholder="Message" class="ms-2 me-2" style="width: 20%; height: 90%; box-sizing: border-box"/>
+                    <button id="sendmessage" class="ms-2 me-2 btn btn-primary border rounded-0 d-flex justify-content-center align-items-center" style="width: 10vh; height: 90%;">Send</button>
                 </div>
             </div>
         </div>
