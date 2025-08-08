@@ -1,3 +1,6 @@
+//This page is a script file but has a type of "html"
+//This was done just for better editing options.
+
 const htmlString = `
 <!DOCTYPE html>
 <html lang="en">
@@ -88,6 +91,7 @@ const htmlString = `
                 <a id="NavbarAbout" class="btn btn-light square-button">Hakkımızda</a>
                 <a id="NavbarServices" class="btn btn-light square-button">Çalışmalar</a>
                 <a id="NavbarContact" class="btn btn-light square-button">İletişim</a>
+                <a id="NavbarCarGame" class="btn btn-light square-button">Ses Tanımalı Araba Oyunu</a>
                 <a id="Chatroom" class="btn btn-light square-button">Chatroom</a>
                 <a id="?Button" class="btn btn-light square-button">☂️</a>
             </div>
@@ -120,6 +124,7 @@ const htmlString = `
 
 `;
 
+//<script>
 //preload objects
 (function() {
 
@@ -137,7 +142,9 @@ var home = document.getElementById('NavbarHome');
 var about = document.getElementById('NavbarAbout');
 var services = document.getElementById('NavbarServices');
 var contact = document.getElementById('NavbarContact');
+var carGame = document.getElementById('NavbarCarGame');
 var unknownbutton = document.getElementById("?Button");
+var chatroom = document.getElementById("Chatroom");
 
 function choosePage(SectionName)
 {
@@ -146,6 +153,7 @@ function choosePage(SectionName)
     about.classList.remove("acitve");
     services.classList.remove("active");
     contact.classList.remove("active");
+    carGame.classList.remove("active");
 
     var key = SectionName;
     switch (key) {
@@ -160,6 +168,9 @@ function choosePage(SectionName)
             break;
         case "Contact":
             contact.classList.add("active");
+            break;
+        case "Ses Tanımalı Araba Oyunu":
+            carGame.classList.add("active");
             break;
         default:
             home.classList.add("active");
@@ -183,9 +194,17 @@ contact.onclick = function () {
     FadeOut(250, 'contact.html');
 };
 
+carGame.onclick = function () {
+    FadeOut(250, 'CarGame/WebGLBuild/index.html');
+};
+
 unknownbutton.onclick = function () {
     Lightning();
     Rain();
+};
+
+chatroom.onclick = function () {
+    FadeOut(250, 'chatroom.html');
 };
 
 
@@ -484,3 +503,4 @@ function Lightning()
     });
 
 }
+//</script>
