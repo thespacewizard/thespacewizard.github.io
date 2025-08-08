@@ -1,2 +1,0 @@
-aşağı kaydırdıkça üstteki elementler yavaşça sola doğru gitsin
-böyle exantrik efektler olsun
