@@ -11,7 +11,7 @@ async function init() {
     partialContainer.textContent = "Loading...";
     
     const channel = new MessageChannel();
-    const model = await Vosk.createModel('vosk-model-small-tr-0.3.tar.gz');
+    const model = await Vosk.createModel('CarGame/WebGLBuild/vosk-model-small-tr-0.3.tar.gz');
     model.registerPort(channel.port1);
 
     const sampleRate = 48000;
